@@ -1,5 +1,6 @@
 package com.empmgt.emploeemanagement.service;
 
+import com.empmgt.emploeemanagement.exception.UserNotFoundException;
 import com.empmgt.emploeemanagement.model.Employee;
 import com.empmgt.emploeemanagement.repo.EmployeeRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,29 +18,29 @@ public class EmployeeService {
         this.employeeRepo = employeeRepo;
     }
 
-//  Add Employee
+    //  Add Employee
     public Employee addEmployee(Employee employee) {
         employee.setEmployeeCode(UUID.randomUUID().toString());
         return employeeRepo.save(employee);
     }
 
-//  Get All Employees
+    //  Get All Employees
     public List<Employee> findAllEmployees() {
         return employeeRepo.findAll();
     }
 
-//  Find Employee By Id
-    public Employee findEmployeeById(Long id){
-        return employeeRepo.findEmployeeById(id);
+    //  Find Employee By Id
+    public Employee findEmployeeById(Long id) {
+        return employeeRepo.findEmployeeById(id).orElseThrow(() -> new UserNotFoundException("User by id " + id + "not found"));
     }
 
-//  Update Employees
+    //  Update Employees
     public Employee updateEmployee(Employee employee) {
         return employeeRepo.save(employee);
     }
 
-//  Delete Employee By Id
-    public void deleteEmployee(Long id){
+    //  Delete Employee By Id
+    public void deleteEmployee(Long id) {
         employeeRepo.deleteEmployeeById(id);
     }
 }
