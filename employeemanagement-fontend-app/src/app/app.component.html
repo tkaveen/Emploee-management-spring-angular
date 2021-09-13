@@ -101,7 +101,8 @@
                     w-md
                     waves-light
                   "
-                  (click)="onOpenModal(employee,'edit')"
+                  data-bs-toggle="modal"
+                  data-bs-target="#updateModal"
                 >
                   Edit
                 </button>
@@ -117,7 +118,8 @@
                     w-md
                     waves-light
                   "
-                  (click)="onOpenModal(employee,'delete')"
+                  data-bs-toggle="modal"
+                  data-bs-target="#deleteModal"
                 >
                   Delete
                 </button>
@@ -132,7 +134,7 @@
     <!-- Add Modal  -->
     <div
       class="modal fade"
-      id="#addModal"
+      id="addModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -166,7 +168,7 @@
     <!-- Update Modal  -->
     <div
       class="modal fade"
-      id="#updateModal"
+      id="updateModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -200,7 +202,7 @@
     <!-- Delete Modal  -->
     <div
       class="modal fade"
-      id="#deleteModal"
+      id="deleteModal"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
