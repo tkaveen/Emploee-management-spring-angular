@@ -10,7 +10,8 @@ import { EmployeeService } from './employee.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  public employees: Employee[] | undefined;
+  public declare employees: Employee[];
+  public declare updateEmployee: Employee;
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -42,22 +43,38 @@ export class AppComponent implements OnInit {
     );
   }
 
-  // public onOpenModal(employee: Employee, mode: string): void {
-  //   const container = document.getElementById('main-container');
-  //   const button = document.createElement('button');
-  //   button.type = 'button';
-  //   button.style.display = 'none';
-  //   button.setAttribute('data-toggle', 'modal');
-  //   if (mode === 'add') {
-  //     button.setAttribute('data-target', '#addModal');
-  //   }
-  //   if (mode === 'edit') {
-  //     button.setAttribute('data-target', '#updateModal');
-  //   }
-  //   if (mode === 'delete') {
-  //     button.setAttribute('data-target', '#deleteModal');
-  //   }
-  //   container?.appendChild(button);
-  //   button.click();
-  // }
+  public onUpdateEmployee(employee: Employee): void {
+    this.employeeService.updateEmployee(employee).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        this.getEmployees();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public updateButton(employee: Employee) {
+    this.updateEmployee = employee;
+  }
+
+  public onOpenModal(employee: Employee, mode: string): void {
+    const container = document.getElementById('main-container');
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-toggle', 'modal');
+    if (mode === 'add') {
+      button.setAttribute('data-target', '#addModal');
+    }
+    if (mode === 'edit') {
+      button.setAttribute('data-target', '#updateModal');
+    }
+    if (mode === 'delete') {
+      button.setAttribute('data-target', '#deleteModal');
+    }
+    container?.appendChild(button);
+    button.click();
+  }
 }
