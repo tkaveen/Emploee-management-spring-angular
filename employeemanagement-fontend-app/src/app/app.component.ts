@@ -12,6 +12,7 @@ import { EmployeeService } from './employee.service';
 export class AppComponent implements OnInit {
   public declare employees: Employee[];
   public declare updateEmployee: Employee;
+  public declare deleteEmployee: Employee;
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -36,9 +37,11 @@ export class AppComponent implements OnInit {
       (response: Employee) => {
         console.log(response);
         this.getEmployees();
+        addForm.reset();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+        addForm.reset();
       }
     );
   }
@@ -57,6 +60,22 @@ export class AppComponent implements OnInit {
 
   public updateButton(employee: Employee) {
     this.updateEmployee = employee;
+  }
+
+  public onDeleteEmployee(employeeId: number): void {
+    this.employeeService.deleteEmployee(employeeId).subscribe(
+      (response: void) => {
+        console.log(response);
+        this.getEmployees();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
+  public deleteButton(employee: Employee) {
+    this.deleteEmployee = employee;
   }
 
   public onOpenModal(employee: Employee, mode: string): void {

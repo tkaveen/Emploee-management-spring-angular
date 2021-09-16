@@ -120,6 +120,7 @@
                   "
                   data-bs-toggle="modal"
                   data-bs-target="#deleteModal"
+                  (click)="deleteButton(employee)"
                 >
                   Delete
                 </button>
@@ -362,7 +363,7 @@
             ></button>
           </div>
           <div class="modal-body">
-            Are you sure you want to delete employee?
+            Are you sure you want to delete employee {{ deleteEmployee?.name }}?
           </div>
           <div class="modal-footer">
             <button
@@ -372,7 +373,13 @@
             >
               No
             </button>
-            <button type="button" class="btn btn-danger">Yes</button>
+            <button
+              (click)="onDeleteEmployee(100)"
+              type="button"
+              class="btn btn-danger"
+            >
+              Yes
+            </button>
           </div>
         </div>
       </div>
