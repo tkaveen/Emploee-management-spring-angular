@@ -47,8 +47,8 @@ public class EmployeeResource {
 
     //  Delete Employee
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteEmployeeById(@PathVariable("id") Long id) {
-        employeeService.deleteEmployeeById(id);
+    public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id) {
+        employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

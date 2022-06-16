@@ -29,11 +29,11 @@
                 data-bs-toggle="modal"
                 data-bs-target="#addModal"
               >
-                Add 
+                Add Employee
               </button>
             </li>
           </ul>
-          <form class="d-flex">
+          <!-- <form class="d-flex">
             <input
               class="form-control me-2"
               type="search"
@@ -43,7 +43,7 @@
             <button class="btn btn-outline-primary ml-2" type="submit">
               Search
             </button>
-          </form>
+          </form> -->
         </div>
       </div>
     </nav>
@@ -70,7 +70,7 @@
               <div class="member-card pt-2 pb-2">
                 <div class="thumb-lg member-thumb mx-auto">
                   <img
-                    src="https://bootdey.com/img/Content/avatar/avatar2.png"
+                    src="{{ employee?.imgUrl }}"
                     class="rounded-circle img-thumbnail"
                     alt="profile-image"
                   />
@@ -333,6 +333,7 @@
                   (click)="onUpdateEmployee(editForm.value)"
                   type="submit"
                   class="btn btn-primary"
+                  data-dismiss="modal"
                 >
                   Save changes
                 </button>
@@ -353,7 +354,7 @@
     >
       <div class="modal-dialog">
         <div class="modal-content">
-          <div class="modal-header">
+          <!-- <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Delete Employee</h5>
             <button
               type="button"
@@ -361,7 +362,7 @@
               data-bs-dismiss="modal"
               aria-label="Close"
             ></button>
-          </div>
+          </div> -->
           <div class="modal-body">
             Are you sure you want to delete employee {{ deleteEmployee?.name }}?
           </div>
@@ -374,7 +375,7 @@
               No
             </button>
             <button
-              (click)="onDeleteEmployee(100)"
+              (click)="onDeleteEmployee(7)"
               type="button"
               class="btn btn-danger"
             >
